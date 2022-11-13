@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Tugas1Controller;
 use App\Http\Controllers\PegawaiController;
 
 /*
@@ -17,7 +18,9 @@ use App\Http\Controllers\PegawaiController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+//tugas 1
+route::get('/tugas1',[Tugas1Controller::class, 'rusungo'])->name('tugas1');
+//tugas 2 dan 3
 route::resource('pegawai',PegawaiController::class);
 
 route::get('tambahpegawai',[PegawaiController::class, 'tambahpegawai'])->name('tambahpegawai');
@@ -29,7 +32,7 @@ route::get('/delete/{id}',[PegawaiController::class, 'delete'])->name('delete');
 route::get('tampilkandata/{id}',[PegawaiController::class, 'tampilkandata'])->name('tampilkandata');
 route::post('updatedata/{id}',[PegawaiController::class, 'updatedata'])->name('updatedata');
 
-
+//tugas 4
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
