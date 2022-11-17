@@ -12,27 +12,33 @@ class PegawaiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    //sama kyk diatas
+    public function homepegawai()
     {
         $datas = pegawai::all();
         //dd($datas);
-        return view('pegawai.index', compact('datas'));
+        return view('pegawai.home', compact('datas'));
         //
+    }
+    public function dashboardLTE(){
+        return view ('admin.dashboard');
     }
 
     public function tambahpegawai(){
         return view ('pegawai.tambahdata');
     }
+    
 
     public function insertpegawai(Request $request){
        pegawai::create($request->all());
-       return redirect()->route('pegawai.index')->WITH('success','Data Berhasil Di Tambahkan');
+       return redirect()->route('homepegawai')->WITH('success','Data Berhasil Di Tambahkan');
     }
 
     public function delete($id){
         $data = pegawai::find($id);
         $data ->delete();
-        return redirect()->route('pegawai.index')->WITH('success','Data Berhasil Di Hapus');
+        return redirect()->route('homepegawai')->WITH('success','Data Berhasil Di Hapus');
     }
 
     public function tampilkandata($id){
@@ -41,12 +47,20 @@ class PegawaiController extends Controller
         return view('pegawai.tampildata',compact('data'));
     }
   
+    public function lihatdata($id){
+        $data = pegawai::find($id);
+        //dd ($data);
+        return view('pegawai.lihatdata',compact('data'));
+    }
+
     public function updatedata(Request $request, $id){
         $data = pegawai::find($id);
         $data ->update($request->all());
-        return redirect()->route('pegawai.index')->WITH('success','Data Berhasil Di Update');
+        return redirect()->route('homepegawai')->WITH('success','Data Berhasil Di Update');
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
